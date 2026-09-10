@@ -8,7 +8,7 @@ import {
   type Hex,
   type AbiFunction,
 } from "viem";
-import { abi, chain, multisig, tokens } from "../lib/config";
+import { abi, chain, multisig, tokens } from "../lib/config.ts";
 import type { Asset, Provider } from "../lib/workspace";
 export function createKcpClient(rpc: string) {
   return createPublicClient({

@@ -17,6 +17,16 @@ if (!tokensJson)
   throw new Error(
     "NEXT_PUBLIC_TOKENS is not set. Copy .env.example to .env.local and fill it in.",
   );
+const hotWalletAddress = process.env.NEXT_PUBLIC_HOT_WALLET;
+if (!hotWalletAddress)
+  throw new Error(
+    "NEXT_PUBLIC_HOT_WALLET is not set. Copy .env.example to .env.local and fill it in.",
+  );
+const coldWalletsJson = process.env.NEXT_PUBLIC_COLD_WALLETS;
+if (!coldWalletsJson)
+  throw new Error(
+    "NEXT_PUBLIC_COLD_WALLETS is not set. Copy .env.example to .env.local and fill it in.",
+  );
 
 export const chain = defineChain({
   id: 56357,
@@ -37,3 +47,7 @@ export const multisig = getAddress(multisigAddress.toLowerCase());
 export const tokens = (
   JSON.parse(tokensJson) as { symbol: string; address: string }[]
 ).map((t) => ({ ...t, address: getAddress(t.address.toLowerCase()) }));
+export const hotWallet = getAddress(hotWalletAddress.toLowerCase());
+export const coldWallets = (JSON.parse(coldWalletsJson) as string[]).map(
+  (a) => getAddress(a.toLowerCase()),
+);

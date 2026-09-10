@@ -8,7 +8,7 @@ export function AssetPanel() {
     <section className="panel assets">
       <div className="section-title">
         <h2>
-          <span className="section-number">01 /</span> 보유 자산{" "}
+          <span className="section-number">01 /</span> 멀티시그 보유자산{" "}
           <span>{assets.length}</span>
         </h2>
         <button className="text-button" onClick={() => setTab("submit")}>

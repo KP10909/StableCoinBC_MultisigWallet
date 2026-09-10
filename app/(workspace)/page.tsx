@@ -1,4 +1,5 @@
 import { VaultBanner } from "../../components/workspace/vault-banner";
+import { CustodyRatio } from "../../components/workspace/custody-ratio";
 import { TreasuryStats } from "../../components/workspace/treasury-stats";
 import { AssetPanel } from "../../components/workspace/asset-panel";
 import { HardwareGuide } from "../../components/workspace/hardware-guide";
@@ -9,6 +10,7 @@ export default function DashboardPage() {
     <>
       <VaultBanner />
       <TreasuryStats />
+      <CustodyRatio />
       <div className="columns">
         <AssetPanel />
         <div className="right-column">
