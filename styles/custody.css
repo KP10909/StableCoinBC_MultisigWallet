@@ -132,7 +132,7 @@
   bottom: -6px;
   width: 2px;
   background: var(--ink);
-  box-shadow: 0 0 0 1px #ffffffb0;
+  box-shadow: 0 0 0 0.5px #ffffffb0;
   z-index: 3;
 }
 
