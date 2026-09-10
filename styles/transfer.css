@@ -14,8 +14,9 @@
 .transfer-balances {
   padding: 25px 20px 15px;
   margin-top: 0;
-  background: #eef1e6;
-  border: 1px solid #cbd3be;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--green);
   border-radius: 6px;
 }
 
@@ -29,8 +30,15 @@
   gap: 7px;
 }
 
-.wallet-balances-icon {
-  color: #5c7a3c;
+.wallet-icon-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--green);
+  color: #ffffff;
   flex-shrink: 0;
 }
 
@@ -42,7 +50,7 @@
 .transfer-balances .asset-row {
   gap: 10px;
   padding: 17px 10px;
-  border-bottom: 1px solid #dbe0cf;
+  border-bottom: 1px solid #dcdfd0;
 }
 
 .transfer-balances .asset-row:last-child {
@@ -73,13 +81,11 @@
 }
 
 .transfer-balances .balance-selected {
-  background: #dce8c9;
-  box-shadow: inset 3px 0 #7b9a45;
-  padding-left: 14px;
+  background: #eef3e6;
 }
 
 .balance-caption {
   font-size: 11px;
   margin: 17px 0 0;
-  color: #6e7e5b;
+  color: #6d7f5a;
 }

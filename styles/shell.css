@@ -5,15 +5,22 @@
 
 .sidebar {
   width: 218px;
-  background: #22261f;
-  color: #bdc4b4;
+  background: #22271e;
+  color: #bdc5b3;
   position: fixed;
   inset: 0 auto 0 0;
   padding: 35px 20px;
   display: flex;
   flex-direction: column;
   z-index: 2;
-  border-right: 1px solid #343a2e;
+  border-right: 1px solid #353a2e;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.sidebar::-webkit-scrollbar {
+  display: none;
 }
 
 .brand {
@@ -22,7 +29,7 @@
   font-size: 40px;
   font-weight: 800;
   letter-spacing: -2.5px;
-  color: #f3f3e9;
+  color: #ffffff;
   gap: 9px;
   padding: 0 10px;
 }
@@ -59,27 +66,27 @@
   place-items: center;
   width: 29px;
   height: 29px;
-  border: 1px solid #5a654b;
+  border: 1px solid #59664a;
   color: var(--acid);
   font-family: var(--mono);
 }
 
 .workspace small {
   display: block;
-  color: #87907e;
+  color: #88907e;
   margin-top: 5px;
   font-size: 12px;
 }
 
 .chevron {
   margin-left: auto;
-  color: #8d9782;
+  color: #8c9782;
 }
 
 .nav-label {
   font: 11px var(--mono);
   letter-spacing: 2px;
-  color: #86907d;
+  color: #86907c;
   margin: 32px 11px 18px;
 }
 
@@ -97,7 +104,7 @@ nav button {
   padding: 14px 12px;
   text-align: left;
   font-size: 14px;
-  color: #a5ae9b;
+  color: #a4ae9a;
   border-radius: 3px;
   transition:
     background 0.2s,
@@ -105,7 +112,7 @@ nav button {
 }
 
 nav button:hover {
-  background: #33392b;
+  background: #33382c;
   color: #fff;
 }
 
@@ -134,14 +141,14 @@ nav i {
 
 .sidebar-bottom strong {
   display: block;
-  color: #d6dccb;
+  color: #d6dbcc;
   font-size: 14px;
   line-height: 1.6;
   margin-top: 15px;
 }
 
 .sidebar-bottom p {
-  color: #929c88;
+  color: #939d87;
   font-size: 13px;
   line-height: 1.9;
 }
@@ -149,11 +156,11 @@ nav i {
 .testnet {
   font: 10px var(--mono);
   letter-spacing: 0.7px;
-  border-top: 1px solid #424939;
+  border-top: 1px solid #424a38;
   padding-top: 25px;
   margin-top: 28px;
   display: block;
-  color: #b1bf9c;
+  color: #b1c09b;
 }
 
 main {
@@ -173,7 +180,7 @@ header {
 
 .breadcrumb {
   font: 12px var(--mono);
-  color: #808677;
+  color: #818677;
 }
 
 .breadcrumb span {
@@ -182,7 +189,7 @@ header {
 
 .breadcrumb b {
   font-weight: 400;
-  color: #333a2c;
+  color: #34392d;
 }
 
 .header-actions {
@@ -226,7 +233,7 @@ header {
 .eyebrow {
   font: 11px var(--mono);
   letter-spacing: 1.8px;
-  color: #727c65;
+  color: #737d64;
   margin-bottom: 13px;
 }
 
@@ -246,7 +253,7 @@ footer {
   padding: 18px 0;
   border-top: 1px solid var(--line);
   font-size: 11px;
-  color: #7b886e;
+  color: #7c896d;
 }
 
 footer span,

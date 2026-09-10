@@ -10,8 +10,8 @@
 }
 
 .modal {
-  background: #f0f1e8;
-  border: 1px solid #c0cbae;
+  background: var(--bg);
+  border: 1px solid var(--line);
   width: 450px;
   max-width: 100%;
   padding: 35px;
@@ -35,7 +35,7 @@
 
 .modal > small {
   display: block;
-  color: #79886a;
+  color: #78876b;
   font-size: 12px;
   line-height: 1.8;
   margin-top: 22px;
@@ -45,10 +45,10 @@
   display: flex;
   align-items: center;
   gap: 13px;
-  border: 1px solid #c5cfb8;
+  border: 1px solid var(--line);
   width: 100%;
   padding: 18px;
-  background: #e6ebdc;
+  background: var(--bg);
   margin: 12px 0;
 }
 

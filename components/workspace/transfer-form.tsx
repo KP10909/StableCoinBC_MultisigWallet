@@ -33,7 +33,7 @@ export function TransferForm() {
     <section className="panel form-panel">
       <div className="section-title">
         <h2>전송 정보</h2>
-        <span className="tiny-badge">01 → 02 → 03</span>
+        <span className="tiny-badge">Submit → Confirm → Execution</span>
       </div>
       <p>
         제안 등록 → 소유자 승인 → 실행 순서로 진행됩니다. 등록만으로 자산이
@@ -109,7 +109,12 @@ export function TransferForm() {
                   "submitTransaction",
                   transferArgs(),
                   "트랜잭션 제출 등록",
-                );
+                ).then((ok) => {
+                  if (ok) {
+                    setRecipient("");
+                    setAmount("");
+                  }
+                });
               } catch (e) {
                 setError(message(e));
               }

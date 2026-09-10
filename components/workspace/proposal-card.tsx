@@ -81,7 +81,7 @@ export function ProposalCard({
           )}
           <div className="proposal-detail">
             <b>Calldata</b>
-            <code>{p.data}</code>
+            <code className="proposal-calldata">{p.data}</code>
           </div>
         </details>
       </div>

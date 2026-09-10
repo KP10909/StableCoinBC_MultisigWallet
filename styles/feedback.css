@@ -4,8 +4,8 @@
   align-items: center;
   gap: 18px;
   padding: 16px 20px;
-  background: #e4ebd9;
-  border-left: 3px solid #829b58;
+  background: #f3f4f0;
+  border-left: 3px solid #819a59;
   margin-bottom: 22px;
   font-size: 14px;
   line-height: 1.8;
@@ -13,8 +13,8 @@
 }
 
 .alert.error {
-  background: #f0e0d7;
-  border-color: #bd7954;
+  background: #f5f2f0;
+  border-color: #bd7a54;
   color: #855035;
 }
 
@@ -46,5 +46,5 @@
   width: 100%;
   overflow-wrap: anywhere;
   font: 13px var(--mono);
-  color: #526d39;
+  color: #536d39;
 }

@@ -345,8 +345,8 @@ export function useWorkspaceController() {
     functionName: string,
     args: readonly unknown[],
     label: string,
-  ) {
-    if (lock.current) return;
+  ): Promise<boolean> {
+    if (lock.current) return false;
     lock.current = true;
     setBusy(true);
     setError("");
@@ -407,6 +407,7 @@ export function useWorkspaceController() {
             : "트랜잭션이 되돌려졌습니다. 탐색기에서 확인하세요.",
       );
       await refresh();
+      return true;
     } catch (e) {
       setError(message(e));
       setNotice(
@@ -420,13 +421,14 @@ export function useWorkspaceController() {
             t.hash === submitted ? { ...t, status: "탐색기 확인 필요" } : t,
           ),
         );
+      return false;
     } finally {
       lock.current = false;
       setBusy(false);
     }
   }
-  async function deposit(asset: Asset, rawAmount: string) {
-    if (lock.current) return;
+  async function deposit(asset: Asset, rawAmount: string): Promise<boolean> {
+    if (lock.current) return false;
     lock.current = true;
     setBusy(true);
     setError("");
@@ -473,6 +475,7 @@ export function useWorkspaceController() {
           : "트랜잭션이 되돌려졌습니다. 탐색기에서 확인하세요.",
       );
       await refresh();
+      return true;
     } catch (e) {
       setError(message(e));
       if (submitted)
@@ -481,6 +484,7 @@ export function useWorkspaceController() {
             t.hash === submitted ? { ...t, status: "탐색기 확인 필요" } : t,
           ),
         );
+      return false;
     } finally {
       lock.current = false;
       setBusy(false);

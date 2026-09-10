@@ -19,11 +19,9 @@ export function TransferBalances({
     >
       <div className="section-title">
         <h2 id="transfer-balances-title">
-          {isDeposit ? (
-            <Wallet size={15} className="wallet-balances-icon" />
-          ) : (
-            <ShieldCheck size={15} className="wallet-balances-icon" />
-          )}{" "}
+          <span className="wallet-icon-chip">
+            {isDeposit ? <Wallet size={15} /> : <ShieldCheck size={15} />}
+          </span>{" "}
           {isDeposit ? "내 지갑 잔고" : "멀티시그 보유 자산"}
         </h2>
         <span className="tiny-badge">KCP TESTNET</span>

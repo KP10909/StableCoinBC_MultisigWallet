@@ -50,18 +50,9 @@ export function CustodyRatio() {
               : "대기 중"}
         </span>
       </div>
-      <div className="custody-legend">
-        <span>
-          <i className="custody-dot custody-dot-hot" /> Hot
-        </span>
-        <span>
-          <i className="custody-dot custody-dot-cold" /> Cold
-        </span>
-        <span className="custody-legend-target">
-          <i className="custody-dot custody-dot-target" /> 목표 {TARGET_HOT_PCT}
-          % / {100 - TARGET_HOT_PCT}%
-        </span>
-      </div>
+      <p className="custody-target-note">
+        목표 비율 Hot {TARGET_HOT_PCT}% · Cold {100 - TARGET_HOT_PCT}%
+      </p>
       <div className="custody-rows">
         {!rows.length && <div className="empty">잔고가 있는 자산이 없습니다.</div>}
         {rows.map((row) => (
@@ -70,10 +61,12 @@ export function CustodyRatio() {
             <div className="custody-body">
               <div className="custody-pct-big">
                 <span className="custody-pct-value custody-pct-hot">
-                  Hot {row.hotPct.toFixed(1)}%
+                  <span className="custody-pct-label">Hot</span>{" "}
+                  {row.hotPct.toFixed(1)}%
                 </span>
                 <span className="custody-pct-value custody-pct-cold">
-                  Cold {(100 - row.hotPct).toFixed(1)}%
+                  <span className="custody-pct-label">Cold</span>{" "}
+                  {(100 - row.hotPct).toFixed(1)}%
                 </span>
                 {row.needsRebalance && (
                   <span className="custody-rebalance-badge">리밸런싱 필요</span>

@@ -1,8 +1,8 @@
 :root {
-  --bg: #f1f0eb;
-  --ink: #20231f;
-  --muted: #6d7369;
-  --line: #d4d6cc;
+  --bg: #ffffff;
+  --ink: #21241e;
+  --muted: #6c7468;
+  --line: #d4d7cb;
   --green: #426126;
   --acid: #d8fa6c;
   --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
@@ -54,17 +54,12 @@ select {
   outline-offset: 5px;
 }
 
-::selection {
-  background: var(--acid);
-  color: #20231f;
-}
-
 small {
   font-size: 13px;
 }
 
 .button {
-  border: 1px solid #bfc4b5;
+  border: 1px solid var(--line);
   background: transparent;
   display: inline-flex;
   align-items: center;
@@ -80,18 +75,18 @@ small {
 }
 
 .button:hover {
-  background: #e4e8da;
+  background: #f2f3f0;
   transform: translateY(-1px);
 }
 
 .button.dark {
-  background: #252b20;
-  color: #f2f5e9;
-  border-color: #252b20;
+  background: #252a21;
+  color: #f8f9f7;
+  border-color: #252a21;
 }
 
 .button.dark:hover {
-  background: #455630;
+  background: #45572f;
 }
 
 h1 {
@@ -119,7 +114,7 @@ h2 {
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #b4bfa7;
+  color: #b4bea8;
   font: 12px var(--mono);
   overflow-wrap: anywhere;
 }
@@ -135,9 +130,9 @@ h2 {
 .tiny-badge {
   font: 10px var(--mono);
   padding: 4px 7px;
-  border: 1px solid #c7cfbc;
-  background: #e8ecdf;
-  color: #647450;
+  border: 1px solid var(--line);
+  background: #f4f5f2;
+  color: #647351;
   margin-left: 8px;
   border-radius: 2px;
 }
@@ -152,7 +147,7 @@ h2 {
   padding: 24px 0;
   margin-bottom: 28px;
   min-width: 0;
-  border-top: 1px solid #bbc3b0;
+  border-top: 1px solid var(--line);
 }
 
 .section-title {
@@ -163,15 +158,15 @@ h2 {
   margin-bottom: 25px;
 }
 
-.section-title h2 > span:not(.section-number) {
+.section-title h2 > span:not(.section-number):not(.count-pill):not(.wallet-icon-chip) {
   font: 12px var(--mono);
   margin-left: 8px;
-  color: #6c7c58;
+  color: #6c7b59;
 }
 
 .section-number {
   font: 12px var(--mono);
-  color: #81916e;
+  color: #80926d;
   margin-right: 10px;
   letter-spacing: 0;
 }
@@ -183,7 +178,7 @@ h2 {
   background: transparent;
   border: 0;
   font-size: 13px;
-  color: #4a622f;
+  color: #4b622f;
   padding: 5px;
 }
 
@@ -195,7 +190,7 @@ h2 {
 .subtle-icon {
   display: grid;
   place-items: center;
-  border: 1px solid #a8b997;
+  border: 1px solid #a7b997;
   color: #516e33;
   width: 36px;
   height: 36px;
@@ -208,7 +203,7 @@ h2 {
 }
 
 .muted {
-  color: #82936e;
+  color: #81936e;
   margin-left: 10px;
 }
 

@@ -9,7 +9,6 @@ export function AssetPanel() {
       <div className="section-title">
         <h2>
           <span className="section-number">01 /</span> 멀티시그 보유자산{" "}
-          <span>{assets.length}</span>
         </h2>
         <button className="text-button" onClick={() => setTab("submit")}>
           트랜잭션 제출 <ArrowUpRight size={16} />

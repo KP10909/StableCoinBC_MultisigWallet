@@ -69,7 +69,9 @@ export function DepositForm() {
         disabled={!canDeposit}
         onClick={() => {
           try {
-            void deposit(assets[depositIndex], depositAmount);
+            void deposit(assets[depositIndex], depositAmount).then((ok) => {
+              if (ok) setDepositAmount("");
+            });
           } catch (e) {
             setError(message(e));
           }

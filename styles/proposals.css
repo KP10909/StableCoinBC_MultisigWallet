@@ -28,14 +28,14 @@
   font: 11px var(--mono);
   text-transform: uppercase;
   letter-spacing: 0.4px;
-  color: #8a9678;
+  color: #889579;
 }
 
 .proposal a {
   display: block;
   font: 13px var(--mono);
   overflow-wrap: anywhere;
-  color: #677857;
+  color: #687758;
 }
 
 .proposal-stats {
@@ -46,29 +46,42 @@
 }
 
 .proposal-value {
-  font: 600 15px var(--mono);
+  font: 16px var(--mono);
+  letter-spacing: -0.5px;
   color: var(--ink);
 }
 
 .proposal-detail {
   font: 13px var(--mono);
-  color: #4a622f;
+  color: #4b622f;
   margin: 12px 0 0;
+  padding-left: 14px;
+  border-left: 2px solid var(--line);
   overflow-wrap: anywhere;
   display: grid;
   gap: 5px;
 }
 
 .proposal-detail b {
-  color: #8a9678;
+  color: #889579;
   font-weight: 700;
   margin-right: 6px;
+}
+
+.proposal-calldata {
+  display: block;
+  background: #f3f4f1;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 8px 10px;
+  margin-top: 2px;
+  word-break: break-all;
 }
 
 .proposal-detail + .proposal-detail {
   margin-top: 12px;
   padding-top: 12px;
-  border-top: 1px dashed #d3dac5;
+  border-top: 1px dashed var(--line);
 }
 
 .proposal-actions {
@@ -81,7 +94,8 @@
 }
 
 .proposal-confirms {
-  font: 700 14px var(--mono);
+  font: 16px var(--mono);
+  letter-spacing: -0.5px;
   color: var(--ink);
 }
 
@@ -96,6 +110,6 @@
 .empty {
   padding: 44px;
   text-align: center;
-  color: #77876a;
+  color: #798869;
   font-size: 14px;
 }

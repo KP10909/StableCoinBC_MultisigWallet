@@ -1,7 +1,7 @@
 .signing {
-  background: #e0e7d4;
+  background: #f0f2ee;
   padding: 27px;
-  border: 1px solid #cbd5bc;
+  border: 1px solid var(--line);
   border-radius: 3px;
   position: relative;
 }
@@ -9,7 +9,7 @@
 .section-kicker {
   font: 9px var(--mono);
   letter-spacing: 1.2px;
-  color: #687f50;
+  color: #69804f;
 }
 
 .signing h2 {
@@ -23,7 +23,7 @@
 .signing p {
   font-size: 13px;
   margin-bottom: 23px;
-  color: #68765a;
+  color: #69765a;
 }
 
 .device {
@@ -31,8 +31,8 @@
   align-items: center;
   gap: 12px;
   padding: 17px 0;
-  border-top: 1px solid #c0ccaf;
-  color: #58763a;
+  border-top: 1px solid var(--line);
+  color: #58753b;
 }
 
 .device strong {
@@ -45,20 +45,20 @@
   display: block;
   font-size: 11px;
   margin-top: 6px;
-  color: #6e7e5b;
+  color: #6d7f5a;
 }
 
 .device-tag {
   margin-left: auto;
-  border: 1px solid #b8c7a3;
+  border: 1px solid var(--line);
   padding: 4px 5px;
   font: 10px var(--mono);
 }
 
 .signing .button {
-  background: #2d3922;
-  color: #eaf1de;
-  border-color: #2d3922;
+  background: #2d3a21;
+  color: #f5f6f3;
+  border-color: #2d3a21;
   margin-top: 8px;
 }
 
@@ -67,6 +67,6 @@
   text-align: center;
   font-size: 11px;
   line-height: 1.8;
-  color: #71835d;
+  color: #72845c;
   margin-top: 12px;
 }
