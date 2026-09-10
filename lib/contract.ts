@@ -9,7 +9,7 @@ import {
   erc20Abi,
   formatUnits,
 } from "viem";
-import { abi as multisigAbi } from "./config";
+import { abi as multisigAbi } from "./config.ts";
 import type { Asset } from "./workspace";
 export const exampleAbi = parseAbi([
   "function getOwners() view returns (address[])",

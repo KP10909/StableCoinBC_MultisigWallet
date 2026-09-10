@@ -1,20 +1,29 @@
 import { defineChain, getAddress, type Abi } from "viem";
-import abiJson from "./multisig.json";
+import abiJson from "./multisig.json" with { type: "json" };
 export const abi = abiJson as Abi;
 
-function requireEnv(name: string) {
-  const value = process.env[name];
-  if (!value)
-    throw new Error(`${name} is not set. Copy .env.example to .env.local and fill it in.`);
-  return value;
-}
+const rpcUrl = process.env.NEXT_PUBLIC_RPC_URL;
+if (!rpcUrl)
+  throw new Error(
+    "NEXT_PUBLIC_RPC_URL is not set. Copy .env.example to .env.local and fill it in.",
+  );
+const multisigAddress = process.env.NEXT_PUBLIC_MULTISIG_ADDRESS;
+if (!multisigAddress)
+  throw new Error(
+    "NEXT_PUBLIC_MULTISIG_ADDRESS is not set. Copy .env.example to .env.local and fill it in.",
+  );
+const tokensJson = process.env.NEXT_PUBLIC_TOKENS;
+if (!tokensJson)
+  throw new Error(
+    "NEXT_PUBLIC_TOKENS is not set. Copy .env.example to .env.local and fill it in.",
+  );
 
 export const chain = defineChain({
   id: 56357,
   name: "KCP Testnet",
   nativeCurrency: { name: "KRW", symbol: "KRW", decimals: 18 },
   rpcUrls: {
-    default: { http: [requireEnv("NEXT_PUBLIC_RPC_URL")] },
+    default: { http: [rpcUrl] },
   },
   blockExplorers: {
     default: {
@@ -24,12 +33,7 @@ export const chain = defineChain({
   },
   testnet: true,
 });
-export const multisig = getAddress(
-  requireEnv("NEXT_PUBLIC_MULTISIG_ADDRESS").toLowerCase(),
-);
+export const multisig = getAddress(multisigAddress.toLowerCase());
 export const tokens = (
-  JSON.parse(requireEnv("NEXT_PUBLIC_TOKENS")) as {
-    symbol: string;
-    address: string;
-  }[]
+  JSON.parse(tokensJson) as { symbol: string; address: string }[]
 ).map((t) => ({ ...t, address: getAddress(t.address.toLowerCase()) }));
