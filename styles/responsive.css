@@ -1,0 +1,365 @@
+@media (min-width: 1550px) {
+  .content {
+    padding-top: 48px;
+  }
+  .vault-card {
+    min-height: 340px;
+  }
+  .vault-card h2 {
+    font-size: 76px;
+  }
+  .asset-row {
+    padding: 22px 7px;
+  }
+}
+
+@media (max-width: 1150px) {
+  .sidebar {
+    width: 180px;
+    padding: 32px 13px;
+  }
+  main {
+    margin-left: 180px;
+  }
+  .content {
+    padding: 30px 28px;
+  }
+  header {
+    padding: 0 28px;
+  }
+  .vault-card {
+    padding: 30px 28px 43px;
+  }
+  .vault-policy {
+    width: 166px;
+    padding-left: 23px;
+  }
+  .vault-policy strong {
+    font-size: 63px;
+  }
+  .vault-card h2 {
+    font-size: 55px;
+  }
+  .address {
+    font-size: 11px;
+    flex-wrap: wrap;
+  }
+  .columns {
+    gap: 24px;
+    grid-template-columns: minmax(0, 1.5fr) minmax(260px, 1fr);
+  }
+  .stats strong {
+    font-size: 33px;
+  }
+  .signing {
+    padding: 23px;
+  }
+  .header-actions {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 950px) {
+  .columns {
+    grid-template-columns: 1fr;
+  }
+  .right-column {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 25px;
+  }
+  .page-heading h1 {
+    font-size: 32px;
+  }
+  .vault-card h2 {
+    font-size: 48px;
+  }
+  .vault-policy {
+    width: 150px;
+  }
+  .vault-policy strong {
+    font-size: 55px;
+  }
+  .vault-policy em {
+    font-size: 28px;
+  }
+  .stats > div {
+    padding: 24px 18px;
+  }
+  .stats strong small {
+    display: block;
+    margin-top: 8px;
+  }
+  .vault-identity {
+    min-width: 0;
+  }
+  .address a {
+    width: 100%;
+    line-height: 1.8;
+  }
+  .breadcrumb {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 700px) {
+  .sidebar {
+    position: static;
+    width: 100%;
+    padding: 19px 18px 10px;
+    border-right: 0;
+  }
+  .shell {
+    display: block;
+  }
+  .brand {
+    font-size: 34px;
+    padding-left: 3px;
+  }
+  .brand-icon {
+    width: 24px;
+  }
+  .workspace,
+  .nav-label,
+  .sidebar-bottom {
+    display: none;
+  }
+  nav {
+    display: flex;
+    gap: 5px;
+    margin-top: 20px;
+    overflow: auto;
+  }
+  nav button {
+    white-space: nowrap;
+    padding: 12px 10px;
+    font-size: 12px;
+    gap: 7px;
+  }
+  nav button svg {
+    width: 15px;
+  }
+  nav i {
+    display: none;
+  }
+  main {
+    margin: 0;
+  }
+  header {
+    height: 67px;
+    padding: 0 20px;
+  }
+  .breadcrumb {
+    display: none;
+  }
+  .header-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .content {
+    padding: 29px 20px 15px;
+  }
+  .page-heading {
+    align-items: flex-start;
+    gap: 13px;
+    margin-bottom: 26px;
+  }
+  .page-heading h1 {
+    font-size: 32px;
+    max-width: 250px;
+    letter-spacing: -1.5px;
+  }
+  .eyebrow {
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+  .page-heading p {
+    font-size: 12px;
+  }
+  .page-heading > .button {
+    font-size: 0;
+    padding: 10px;
+    gap: 0;
+    margin-top: 25px;
+  }
+  .page-heading > .button svg {
+    width: 15px;
+  }
+  .vault-card {
+    padding: 28px 25px 37px;
+    min-height: 0;
+    gap: 16px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .vault-card h2 {
+    font-size: 56px;
+    margin: 25px 0 22px;
+  }
+  .vault-identity {
+    width: 100%;
+  }
+  .vault-policy {
+    width: 100%;
+    border-left: 0;
+    border-top: 1px solid #515c44;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    padding: 20px 0 0;
+    gap: 10px;
+  }
+  .vault-policy .policy-label {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .quorum-marks {
+    grid-column: 1;
+    grid-row: 2;
+    margin: 0;
+    align-self: center;
+  }
+  .vault-policy > span:not(.policy-label) {
+    display: none;
+  }
+  .vault-policy strong {
+    grid-column: 2;
+    grid-row: 1/3;
+    font-size: 45px;
+  }
+  .vault-policy small {
+    grid-column: 1/3;
+    font-size: 11px;
+  }
+  .vault-serial {
+    font-size: 8px;
+    bottom: 12px;
+    right: 19px;
+  }
+  .pill {
+    font-size: 10px;
+  }
+  .address {
+    font-size: 11px;
+  }
+  .stats {
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 29px;
+  }
+  .stats > div:first-child {
+    grid-column: 1/3;
+    border-bottom: 1px solid var(--line);
+    border-right: 0;
+    padding: 22px 0;
+  }
+  .stats > div:nth-child(2) {
+    padding-left: 0;
+  }
+  .stats > div:last-child {
+    padding-right: 0;
+  }
+  .stats strong {
+    font-size: 32px;
+  }
+  .stats strong small {
+    display: inline;
+    font-size: 10px;
+  }
+  .stats > div > span {
+    font-size: 12px;
+  }
+  .stats p {
+    font-size: 11px;
+  }
+  .columns {
+    gap: 0;
+  }
+  .right-column {
+    display: block;
+  }
+  .signing {
+    padding: 26px;
+  }
+  .signing h2 {
+    font-size: 30px;
+  }
+  .proposal {
+    flex-direction: column;
+  }
+  .proposal-actions {
+    justify-content: flex-end;
+  }
+  .proposal a {
+    font-size: 12px;
+  }
+  .form-panel {
+    padding: 23px 18px;
+    margin-top: 25px;
+  }
+  .section-title h2 {
+    font-size: 14px;
+  }
+  .section-number {
+    margin-right: 5px;
+  }
+  .asset-balance {
+    font-size: 14px;
+  }
+  .alert {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .network {
+    font-size: 11px;
+  }
+  footer {
+    flex-wrap: wrap;
+    font-size: 11px;
+  }
+  .modal {
+    padding: 30px 25px;
+  }
+  .form-panel select {
+    font-size: 13px;
+  }
+  .empty {
+    padding: 30px 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+@media (max-width: 1100px) {
+  .transfer-layout {
+    grid-template-columns: minmax(0, 1.2fr) minmax(290px, 1fr);
+    gap: 20px;
+  }
+  .transfer-layout > .form-panel {
+    padding: 25px 20px;
+  }
+}
+
+@media (max-width: 950px) {
+  .transfer-layout {
+    grid-template-columns: 1fr;
+  }
+  .transfer-balances {
+    max-width: none;
+  }
+  .transfer-balances .asset-balance {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 700px) {
+  .transfer-layout {
+    margin-top: 25px;
+    gap: 0;
+  }
+}

@@ -1,0 +1,72 @@
+.signing {
+  background: #e0e7d4;
+  padding: 27px;
+  border: 1px solid #cbd5bc;
+  border-radius: 3px;
+  position: relative;
+}
+
+.section-kicker {
+  font: 9px var(--mono);
+  letter-spacing: 1.2px;
+  color: #687f50;
+}
+
+.signing h2 {
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.35;
+  margin-top: 12px;
+  letter-spacing: -1.2px;
+}
+
+.signing p {
+  font-size: 13px;
+  margin-bottom: 23px;
+  color: #68765a;
+}
+
+.device {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 17px 0;
+  border-top: 1px solid #c0ccaf;
+  color: #58763a;
+}
+
+.device strong {
+  display: block;
+  font-size: 14px;
+  color: #3b4d2b;
+}
+
+.device small {
+  display: block;
+  font-size: 11px;
+  margin-top: 6px;
+  color: #6e7e5b;
+}
+
+.device-tag {
+  margin-left: auto;
+  border: 1px solid #b8c7a3;
+  padding: 4px 5px;
+  font: 10px var(--mono);
+}
+
+.signing .button {
+  background: #2d3922;
+  color: #eaf1de;
+  border-color: #2d3922;
+  margin-top: 8px;
+}
+
+.footnote {
+  display: block;
+  text-align: center;
+  font-size: 11px;
+  line-height: 1.8;
+  color: #71835d;
+  margin-top: 12px;
+}

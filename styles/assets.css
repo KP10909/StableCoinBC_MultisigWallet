@@ -1,0 +1,90 @@
+.asset-head {
+  display: flex;
+  justify-content: space-between;
+  font: 11px var(--mono);
+  color: #78826f;
+  border-bottom: 1px solid var(--line);
+  padding: 0 0 14px;
+}
+
+.asset-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 19px 7px;
+  border-bottom: 1px solid var(--line);
+  transition: background 0.2s;
+}
+
+.asset-row:hover {
+  background: #e7ebdd;
+}
+
+.coin {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border: 1px solid #bdc5b2;
+  background: #e1e7d7;
+  color: #465e2c;
+  font: 14px var(--mono);
+  border-radius: 50%;
+}
+
+.coin-0 {
+  background: #2c3624;
+  color: var(--acid);
+  border-color: #2c3624;
+}
+
+.coin-2 {
+  background: #edddd6;
+  color: #895446;
+  border-color: #d9bcae;
+}
+
+.coin-3 {
+  background: #dfe2eb;
+  color: #576383;
+  border-color: #bdc5d9;
+}
+
+.coin-5 {
+  background: #dbe8e9;
+  color: #3c6f75;
+  border-color: #b4cdce;
+}
+
+.asset-name {
+  display: grid;
+  gap: 7px;
+}
+
+.asset-name strong {
+  font-size: 15px;
+  letter-spacing: 0.2px;
+}
+
+.asset-name a,
+.asset-name small {
+  font: 11px var(--mono);
+  color: #7a846f;
+}
+
+.asset-balance {
+  margin-left: auto;
+  text-align: right;
+  max-width: 55%;
+  overflow-wrap: anywhere;
+  font: 16px var(--mono);
+  letter-spacing: -0.5px;
+}
+
+.asset-balance small {
+  display: block;
+  font: 11px var(--mono);
+  margin-top: 6px;
+  color: #869276;
+}

@@ -1,0 +1,61 @@
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: #18201199;
+  backdrop-filter: blur(7px);
+  display: grid;
+  place-items: center;
+  z-index: 10;
+  padding: 20px;
+}
+
+.modal {
+  background: #f0f1e8;
+  border: 1px solid #c0cbae;
+  width: 450px;
+  max-width: 100%;
+  padding: 35px;
+  position: relative;
+  box-shadow: 15px 15px 0 #17210e40;
+  border-radius: 3px;
+}
+
+.modal-close {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  background: none;
+  border: 0;
+}
+
+.modal h2 {
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.modal > small {
+  display: block;
+  color: #79886a;
+  font-size: 12px;
+  line-height: 1.8;
+  margin-top: 22px;
+}
+
+.wallet-option {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  border: 1px solid #c5cfb8;
+  width: 100%;
+  padding: 18px;
+  background: #e6ebdc;
+  margin: 12px 0;
+}
+
+.wallet-option:hover {
+  background: #d8fa6c;
+}
+
+.wallet-option svg:last-child {
+  margin-left: auto;
+}

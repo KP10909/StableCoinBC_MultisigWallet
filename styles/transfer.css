@@ -1,0 +1,85 @@
+.transfer-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(310px, 1fr);
+  gap: 30px;
+  align-items: start;
+  margin-top: 35px;
+}
+
+.transfer-layout > .form-panel {
+  margin-top: 0;
+  max-width: none;
+}
+
+.transfer-balances {
+  padding: 25px 20px 15px;
+  margin-top: 0;
+  background: #eef1e6;
+  border: 1px solid #cbd3be;
+  border-radius: 6px;
+}
+
+.transfer-balances .section-title {
+  margin-bottom: 8px;
+}
+
+.transfer-balances h2 {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.wallet-balances-icon {
+  color: #5c7a3c;
+  flex-shrink: 0;
+}
+
+.balance-description {
+  font-size: 12px;
+  margin: 0 0 23px;
+}
+
+.transfer-balances .asset-row {
+  gap: 10px;
+  padding: 17px 10px;
+  border-bottom: 1px solid #dbe0cf;
+}
+
+.transfer-balances .asset-row:last-child {
+  border-bottom: 0;
+}
+
+.transfer-balances .asset-balance {
+  font-size: 15px;
+  min-width: 0;
+}
+
+.transfer-balances .coin {
+  width: 29px;
+  height: 29px;
+  font-size: 14px;
+}
+
+.transfer-balances .asset-name {
+  flex-shrink: 0;
+}
+
+.transfer-balances .asset-name strong {
+  font-size: 14px;
+}
+
+.transfer-balances .asset-name a {
+  font-size: 10px;
+}
+
+.transfer-balances .balance-selected {
+  background: #dce8c9;
+  box-shadow: inset 3px 0 #7b9a45;
+  padding-left: 14px;
+}
+
+.balance-caption {
+  font-size: 11px;
+  margin: 17px 0 0;
+  color: #6e7e5b;
+}
