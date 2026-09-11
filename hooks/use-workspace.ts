@@ -1,4 +1,5 @@
 "use client";
+import { requestWalletAccount } from "../services/wallet";
 import {
   createKcpClient,
   assertKcpChain,
@@ -62,6 +63,9 @@ export function useWorkspaceController() {
     : "overview";
   const setTab = (next: string) =>
     router.push(next === "overview" ? "/" : `/${next}`);
+  const connectionVersion = useRef(0);
+  const connectionLock = useRef(false);
+  const [connecting, setConnecting] = useState(false);
   const [wallets, setWallets] = useState<WalletOption[]>([]);
   const [wallet, setWallet] = useState<WalletOption>();
   const [account, setAccount] = useState<Address>();
@@ -117,6 +121,8 @@ export function useWorkspaceController() {
     // Use one stable identity per wallet; prefer EIP-6963 over legacy injection.
     const announcedProviders = new Set<Provider>();
     let restored = false;
+    let disposed = false;
+    const restoreVersion = connectionVersion.current;
     const restore = async (item: WalletOption) => {
       if (restored || item.id !== savedWalletId()) return;
       restored = true;
@@ -128,6 +134,7 @@ export function useWorkspaceController() {
         const chainId = (await item.provider.request({
           method: "eth_chainId",
         })) as string;
+        if (disposed || connectionVersion.current !== restoreVersion) return;
         setWallet(item);
         setAccount(getAddress(accounts[0]));
         setWalletChain(Number(chainId));
@@ -187,6 +194,7 @@ export function useWorkspaceController() {
       }
     }, 300);
     return () => {
+      disposed = true;
       clearTimeout(timer);
       window.removeEventListener("eip6963:announceProvider", announced);
     };
@@ -194,60 +202,81 @@ export function useWorkspaceController() {
 
   useEffect(() => {
     if (!wallet) return;
-    const accountsChanged = (accounts: string[]) => {
+    const version = connectionVersion.current;
+    let disposed = false;
+    let revision = 0;
+    let syncing = false;
+    const active = () => !disposed && connectionVersion.current === version;
+    const updateAccount = (accounts: readonly string[]) => {
+      if (!active()) return;
       setAccount(accounts[0] ? getAddress(accounts[0]) : undefined);
       setReview(false);
       setContractReview(false);
     };
+    const accountsChanged = (accounts: string[]) => {
+      revision++;
+      updateAccount(accounts);
+    };
     const chainChanged = (id: string) => {
+      revision++;
+      if (!active()) return;
       setWalletChain(Number(id));
       setReview(false);
       setContractReview(false);
     };
     const disconnected = () => {
+      revision++;
+      if (!active()) return;
+      connectionVersion.current++;
       setAccount(undefined);
+      setWallet(undefined);
       setWalletChain(undefined);
+      setReview(false);
+      setContractReview(false);
       clearWalletId();
+    };
+    const syncAccount = async () => {
+      if (!active() || syncing || document.visibilityState !== "visible")
+        return;
+      syncing = true;
+      const requestRevision = revision;
+      try {
+        const [accounts, chainId] = await Promise.all([
+          wallet.provider.request({ method: "eth_accounts" }),
+          wallet.provider.request({ method: "eth_chainId" }),
+        ]);
+        if (!active() || revision !== requestRevision) return;
+        const next = accounts[0] ? getAddress(accounts[0]) : undefined;
+        setAccount((previous) => (previous === next ? previous : next));
+        setWalletChain(Number(chainId));
+      } catch {
+        /* Wallet may be locked or temporarily unavailable. */
+      } finally {
+        syncing = false;
+      }
     };
     wallet.provider.on("accountsChanged", accountsChanged);
     wallet.provider.on("chainChanged", chainChanged);
     wallet.provider.on("disconnect", disconnected);
+    window.addEventListener("focus", syncAccount);
+    document.addEventListener("visibilitychange", syncAccount);
+    const timer = setInterval(syncAccount, 1500);
+    void syncAccount();
     return () => {
+      disposed = true;
+      clearInterval(timer);
       wallet.provider.removeListener("accountsChanged", accountsChanged);
       wallet.provider.removeListener("chainChanged", chainChanged);
       wallet.provider.removeListener("disconnect", disconnected);
+      window.removeEventListener("focus", syncAccount);
+      document.removeEventListener("visibilitychange", syncAccount);
     };
   }, [wallet]);
 
   useEffect(() => {
-    if (!wallet) return;
-    // Some wallets (OKX included) don't reliably emit accountsChanged, so
-    // re-check the active account whenever the tab regains focus.
-    const syncAccount = async () => {
-      try {
-        const accounts = (await wallet.provider.request({
-          method: "eth_accounts",
-        })) as string[];
-        const next = accounts[0] ? getAddress(accounts[0]) : undefined;
-        setAccount((prev) =>
-          prev && next && prev.toLowerCase() === next.toLowerCase()
-            ? prev
-            : next,
-        );
-      } catch {
-        // ignore; next focus event will retry
-      }
-    };
-    const onVisible = () => {
-      if (document.visibilityState === "visible") void syncAccount();
-    };
-    window.addEventListener("focus", syncAccount);
-    document.addEventListener("visibilitychange", onVisible);
-    return () => {
-      window.removeEventListener("focus", syncAccount);
-      document.removeEventListener("visibilitychange", onVisible);
-    };
-  }, [wallet]);
+    setReview(false);
+    setContractReview(false);
+  }, [account, walletChain]);
 
   const toAssets = (results: PromiseSettledResult<Asset>[]) =>
     results.map((r, i) =>
@@ -276,7 +305,9 @@ export function useWorkspaceController() {
       if (current !== generation.current) return;
       setAssets(toAssets(assetResults));
       setWalletAssets(
-        walletResults ? toAssets(walletResults) : [{ symbol: "KRW" }, ...tokens],
+        walletResults
+          ? toAssets(walletResults)
+          : [{ symbol: "KRW" }, ...tokens],
       );
       const failed = contractResults.find((r) => r.status === "rejected");
       if (failed?.status === "rejected") throw failed.reason;
@@ -302,23 +333,42 @@ export function useWorkspaceController() {
   }, [refresh]);
 
   async function connect(option: WalletOption) {
+    if (connectionLock.current || lock.current) return;
+    connectionLock.current = true;
+    setConnecting(true);
+    const version = ++connectionVersion.current;
+    // Stop old provider listeners and pending reads before selecting a new account.
+    setWallet(undefined);
+    setAccount(undefined);
+    setWalletChain(undefined);
+    clearWalletId();
+    setReview(false);
+    setContractReview(false);
     try {
       setError("");
-      const wc = createWalletClient({ transport: custom(option.provider) });
-      const [address] = await wc.requestAddresses();
+      const selected = await requestWalletAccount(option.provider, option.id);
+      if (connectionVersion.current !== version) return;
       setWallet(option);
-      setAccount(address);
-      setWalletChain(await wc.getChainId());
+      setAccount(selected.account);
+      setWalletChain(selected.chainId);
       setShowWallets(false);
       saveWalletId(option.id);
     } catch (e) {
-      setError(message(e));
+      if (connectionVersion.current === version) setError(message(e));
+    } finally {
+      connectionLock.current = false;
+      setConnecting(false);
     }
   }
   function disconnect() {
+    // Page disconnect is immediate. Reconnect explicitly requests permissions;
+    // a fire-and-forget revocation could otherwise revoke that new connection.
+    connectionVersion.current++;
     setAccount(undefined);
     setWallet(undefined);
     setWalletChain(undefined);
+    setReview(false);
+    setContractReview(false);
     setShowWallets(false);
     clearWalletId();
   }
@@ -465,7 +515,10 @@ export function useWorkspaceController() {
       setTransactions((prev) =>
         prev.map((t) =>
           t.hash === hash
-            ? { ...t, status: receipt.status === "success" ? "완료" : "실행 실패" }
+            ? {
+                ...t,
+                status: receipt.status === "success" ? "완료" : "실행 실패",
+              }
             : t,
         ),
       );
@@ -496,6 +549,7 @@ export function useWorkspaceController() {
   return {
     tab,
     setTab,
+    connecting,
     wallets,
     wallet,
     setWallet,

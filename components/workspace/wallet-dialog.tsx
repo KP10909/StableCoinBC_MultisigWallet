@@ -5,8 +5,17 @@ import { ArrowUpRight, Wallet, X } from "lucide-react";
 import { useWorkspace } from "./workspace-provider";
 
 export function WalletDialog() {
-  const { wallets, account, showWallets, setShowWallets, connect, disconnect } =
-    useWorkspace();
+  const {
+    connecting,
+    busy,
+    wallets,
+    error,
+    account,
+    showWallets,
+    setShowWallets,
+    connect,
+    disconnect,
+  } = useWorkspace();
   return (
     <>
       {" "}
@@ -34,9 +43,18 @@ export function WalletDialog() {
               Keystone 또는 Ledger의 하드웨어 계정을 브라우저 지갑에서 먼저
               선택하세요.
             </p>
+            {error && <p role="alert">{error}</p>}
+            {account && (
+              <p>
+                현재 사이트에 허용된 계정
+                <br />
+                <code style={{ overflowWrap: "anywhere" }}>{account}</code>
+              </p>
+            )}
             {wallets.map((w, i) => (
               <button
                 className="wallet-option"
+                disabled={connecting || busy}
                 key={`${w.id}-${i}`}
                 onClick={() => void connect(w)}
               >
