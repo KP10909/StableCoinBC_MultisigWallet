@@ -57,7 +57,12 @@ export function CustodyRatio() {
         {!rows.length && <div className="empty">잔고가 있는 자산이 없습니다.</div>}
         {rows.map((row) => (
           <div className="custody-row" key={row.symbol}>
-            <div className="custody-symbol">{row.symbol}</div>
+            <div className="custody-symbol">
+              {row.symbol}
+              {row.needsRebalance && (
+                <span className="custody-rebalance-badge">리밸런싱 필요</span>
+              )}
+            </div>
             <div className="custody-body">
               <div className="custody-pct-big">
                 <span className="custody-pct-value custody-pct-hot">
@@ -68,9 +73,6 @@ export function CustodyRatio() {
                   <span className="custody-pct-label">Cold</span>{" "}
                   {(100 - row.hotPct).toFixed(1)}%
                 </span>
-                {row.needsRebalance && (
-                  <span className="custody-rebalance-badge">리밸런싱 필요</span>
-                )}
               </div>
               <div className="custody-bar">
                 <div className="custody-bar-fill">
