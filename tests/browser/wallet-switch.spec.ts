@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test("wallet changes, silent changes, and reconnect use the new account", async ({
+test("wallet events, focus recovery, and reconnect work without polling", async ({
   page,
 }) => {
   await page.addInitScript(() => {
@@ -8,6 +8,7 @@ test("wallet changes, silent changes, and reconnect use the new account", async 
       account: "0x0000000000000000000000000000000000000001",
       selected: "0x0000000000000000000000000000000000000001",
       requests: 0,
+      reads: 0,
     };
     const listeners = new Map<string, Set<(value: unknown) => void>>();
     const provider = {
@@ -17,6 +18,7 @@ test("wallet changes, silent changes, and reconnect use the new account", async 
           state.account = state.selected;
           return [];
         }
+        if (method === "eth_accounts") state.reads++;
         if (method === "eth_accounts" || method === "eth_requestAccounts")
           return [state.account];
         if (method === "eth_chainId") return "0xdc25";
@@ -69,7 +71,12 @@ test("wallet changes, silent changes, and reconnect use the new account", async 
       false,
     ),
   );
-  await expect(header).toContainText("000003", { timeout: 6000 });
+  const reads = await page.evaluate(() => (window as any).walletTest.state.reads);
+  await page.waitForTimeout(3200);
+  expect(await page.evaluate(() => (window as any).walletTest.state.reads)).toBe(reads);
+  await expect(header).toContainText("000002");
+  await page.evaluate(() => window.dispatchEvent(new Event("focus")));
+  await expect(header).toContainText("000003");
   await header.click();
   await page
     .getByRole("button", { name: "페이지 연결 해제", exact: true })

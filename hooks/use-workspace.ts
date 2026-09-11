@@ -260,11 +260,9 @@ export function useWorkspaceController() {
     wallet.provider.on("disconnect", disconnected);
     window.addEventListener("focus", syncAccount);
     document.addEventListener("visibilitychange", syncAccount);
-    const timer = setInterval(syncAccount, 1500);
     void syncAccount();
     return () => {
       disposed = true;
-      clearInterval(timer);
       wallet.provider.removeListener("accountsChanged", accountsChanged);
       wallet.provider.removeListener("chainChanged", chainChanged);
       wallet.provider.removeListener("disconnect", disconnected);
